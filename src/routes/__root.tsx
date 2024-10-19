@@ -27,11 +27,15 @@ function RootComponent() {
   return (
     <>
       <NearProvider>
-        <div className="min-h-screen">
-          <Header />
-          <main className="container mx-auto px-4 py-8">
-            <Outlet />
-          </main>
+        <div className="bg-gradient-to-br from-orange-400 to-purple-800 min-h-screen">
+          <div className="container mx-auto px-4 py-8">
+            <div className="overflow-hidden rounded-lg bg-white shadow-lg">
+              <Header />
+              <main className="container mx-auto px-4 py-8">
+                <Outlet />
+              </main>
+            </div>
+          </div>
         </div>
       </NearProvider>
       <ReactQueryDevtools buttonPosition="bottom-left" />

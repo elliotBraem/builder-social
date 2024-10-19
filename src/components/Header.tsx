@@ -1,32 +1,45 @@
 import { useWallet } from "@/contexts/near";
 import { Link } from "@tanstack/react-router";
+import { ProfileLine } from "./social/ProfileLine";
 
 export default function Header() {
-  const { signedAccountId } = useWallet();
+  const { wallet, signedAccountId } = useWallet();
+
+  const handleSignOut = () => {
+    try {
+      wallet!.signOut();
+    } catch (e) {
+      console.error("Wallet not configured properly");
+    }
+  };
 
   return (
-    <header className="bg-slate-600">
-      <div className="container mx-auto flex items-center justify-between px-4 py-4">
-        <Link to="/" className="text-2xl font-bold">
-          📖 NEAR Guest Book
-        </Link>
-        <nav>
-          {signedAccountId ? (
-            <Link
-              to={`/profile/${signedAccountId}`}
-              className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+    <header className="flex w-full items-center justify-between bg-white p-4 shadow-md">
+      <Link to="/" className="flex items-center">
+        <span className="mr-2 text-4xl font-bold">👷</span>
+        <h1 className="text-xl font-bold text-purple-800">Builder Social</h1>
+      </Link>
+      <div className="flex gap-4">
+        {signedAccountId ? (
+          <>
+            <ProfileLine accountId={signedAccountId} />
+            <button
+              onClick={handleSignOut}
+              className={
+                "hover:bg-orange-400/80 rounded-md bg-orange-400 px-4 py-2 text-white transition-colors duration-200 ease-in-out"
+              }
             >
-              {signedAccountId}
-            </Link>
-          ) : (
-            <Link
-              to="/login"
-              className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-            >
-              Connect NEAR Account
-            </Link>
-          )}
-        </nav>
+              sign out
+            </button>
+          </>
+        ) : (
+          <Link
+            to="/login"
+            className="hover:bg-orange-400/80 rounded-md bg-orange-400 px-4 py-2 text-white transition-colors duration-200 ease-in-out"
+          >
+            Connect NEAR Account
+          </Link>
+        )}
       </div>
     </header>
   );

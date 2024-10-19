@@ -29,9 +29,11 @@ export default function LoginPage() {
       <div className="w-full max-w-2xl py-12">
         <button
           onClick={handleSignIn}
-          className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className={
+            "flex w-full justify-center rounded-md bg-orange-400 px-4 py-2 text-white transition-colors duration-200 ease-in-out hover:bg-orange-400/80"
+          }
         >
-          Sign In
+          sign in
         </button>
       </div>
     </div>

@@ -14,6 +14,7 @@
     "test:ui": "npx playwright test --ui"
   },
   "dependencies": {
+    "@builddao/near-social-js": "^1.1.0",
     "@near-js/client": "^0.0.2",
     "@near-js/keystores-browser": "^0.2.1",
     "@near-js/providers": "^1.0.1",
